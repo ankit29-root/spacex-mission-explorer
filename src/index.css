@@ -1,0 +1,398 @@
+/* ------------------------------
+   Theme Variables
+-------------------------------- */
+:root {
+  /* Default = dark */
+  --bg: #0d1117;
+  --card: #161b22;
+  --text: #e6edf3;
+  --muted: #9aa4af;
+  --accent: #1f6feb;
+  --success: #22c55e;
+  --failed: #ef4444;
+}
+
+/* Light theme overrides */
+.light {
+  --bg: #fdfdfd;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --success: #16a34a;
+  --failed: #dc2626;
+}
+
+/* Dark theme overrides (your current colors) */
+.dark {
+  --bg: #0d1117;
+  --card: #161b22;
+  --text: #e6edf3;
+  --muted: #9aa4af;
+  --accent: #1f6feb;
+  --success: #22c55e;
+  --failed: #ef4444;
+}
+
+/* ------------------------------
+   Base Styles
+-------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background: linear-gradient(160deg, var(--bg) 0%, #121820 100%);
+  color: var(--text);
+  font-family: Inter, system-ui, Segoe UI, Arial, Helvetica, sans-serif;
+  transition: background 0.5s ease, color 0.3s ease;
+}
+
+/* Container & page title */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* ------------------------------
+   Filters Section
+-------------------------------- */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+  align-items: center;
+  background: rgba(20, 25, 35, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.search-wrapper {
+  flex: 1 1 250px;
+}
+
+.filter-input,
+.filter-select {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  background: var(--card);
+  color: var(--text);
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: all 0.2s;
+}
+
+.filter-input::placeholder {
+  color: var(--muted);
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ------------------------------
+   Grid / Launch Cards
+-------------------------------- */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s forwards;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.55);
+  background: #1e2430;
+  outline: none;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card .card-body {
+  flex: 1;
+}
+
+.patch-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.patch-wrapper img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  background: #1a1f28;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.patch-wrapper img:hover {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  margin: 6px 0;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.success {
+  color: var(--success);
+  font-weight: bold;
+  transition: transform 0.2s, opacity 0.3s;
+}
+
+.failed {
+  color: var(--failed);
+  font-weight: bold;
+  transition: transform 0.2s, opacity 0.3s;
+}
+
+.success:hover,
+.failed:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Favorite Star */
+.fav {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.fav:hover,
+.fav:focus {
+  color: var(--accent);
+  outline: none;
+}
+
+.fav:active {
+  transform: scale(1.4) rotate(20deg);
+  color: #ffdd00;
+}
+
+.fav[aria-pressed="true"] {
+  color: #ffdd00;
+}
+
+/* ------------------------------
+   Loader & Error
+-------------------------------- */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.center {
+  text-align: center;
+  margin-top: 36px;
+}
+
+.error {
+  color: var(--failed);
+  text-align: center;
+}
+
+/* ------------------------------
+   Launch Details Page
+-------------------------------- */
+.back {
+  background: var(--accent);
+  color: white;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.back:hover {
+  background-color: #1651c3;
+  transform: scale(1.03);
+}
+
+.detail {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.detail-patch {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+  background: #222;
+  animation: zoomIn 0.5s forwards;
+}
+
+@keyframes zoomIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.detail h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  flex-grow: 1;
+}
+
+.detail p {
+  margin: 6px 0;
+}
+
+.links a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.links a.ml {
+  margin-left: 12px;
+}
+
+.links a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 6px var(--accent);
+}
+
+/* ------------------------------
+   Responsive
+-------------------------------- */
+@media (max-width: 640px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .detail-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .detail-patch {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* ---------------- Skeleton Loader ---------------- */
+.skeleton-pulse {
+  background: linear-gradient(90deg, #1a1f28 25%, #2a2f38 50%, #1a1f28 75%);
+  background-size: 200% 100%;
+  animation: pulse 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes pulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-card {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardFadeIn 0.5s forwards;
+}
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.grid .card:nth-child(1) { animation-delay: 0.05s; }
+.grid .card:nth-child(2) { animation-delay: 0.1s; }
+.grid .card:nth-child(3) { animation-delay: 0.15s; }
+.grid .card:nth-child(4) { animation-delay: 0.2s; }
+.grid .card:nth-child(5) { animation-delay: 0.25s; }
