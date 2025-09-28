@@ -106,5 +106,4 @@ Add pagination for mission lists
 Offline support with service workers
 
 🌐 Live Demo
-🔗 Live Demo Link
-(Update this once deployed to Vercel, Netlify, or GitHub Pages)
+🔗 https://space-mission-explorer.netlify.app/
