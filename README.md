@@ -21,7 +21,7 @@ The app allows users to view launches, filter missions, and see detailed launch 
 - **Styling:** CSS  
 - **Testing:** Vitest, React Testing Library  
 - **Build Tool:** Vite  
-- **Deployment:** Vercel / Netlify / GitHub Pages  
+- **Deployment:** Netlify  
 
 ---
 
@@ -105,5 +105,6 @@ Add pagination for mission lists
 
 Offline support with service workers
 
-🌐 Live Demo
-🔗 https://space-mission-explorer.netlify.app/
+## 🌐 Live Demo
+🔗 [Live Link](https://spacex-mission-explorer.netlify.app/)
+
